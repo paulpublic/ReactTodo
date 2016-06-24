@@ -11,7 +11,7 @@ describe('AddTodo', () => {
     expect(AddTodo).toExist();
   });
 
-  it('should call onAddTask if valid task entered', () => {
+  it('should call onAddTodo if valid task entered', () => {
     var spy = expect.createSpy();
     var form = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
     var $el = $(ReactDOM.findDOMNode(form));
