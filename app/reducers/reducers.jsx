@@ -19,17 +19,6 @@ export var showCompletedReducer = (state = false, action) => {
       return state;
   }
 };
-//
-// var updatedTodos = this.state.todos.map((todo) => {
-//   if (todo.id === id) {
-//     todo.completed = !todo.completed;
-//     todo.completedAt = todo.completed ? moment().unix() : undefined;
-//   }
-//
-//   return todo;
-// });
-//
-// this.setState({todos: updatedTodos});
 
 export var todosReducer = (state = [], action) => {
   switch (action.type) {
@@ -60,6 +49,11 @@ export var todosReducer = (state = [], action) => {
       });
 
       return updatedTodos;
+    case 'ADD_TODOS':
+      return [
+        ...state,
+        ...action.todos
+      ];
     default:
       return state;
   }

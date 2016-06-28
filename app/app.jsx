@@ -7,14 +7,16 @@ var TodoApp = require('TodoApp');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
+var TodoAPI = require('TodoAPI');
 
 store.subscribe(() => {
+  var state = store.getState();
   console.log('New State', store.getState());
+  TodoAPI.setTodos(state.todos);
 });
 
-store.dispatch(actions.addTodo("Buy milk"));
-store.dispatch(actions.setSearchText('yard'));
-store.dispatch(actions.toggleShowCompleted());
+var initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
 
 // Load foundation
 $(document).foundation();
