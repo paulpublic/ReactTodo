@@ -33,7 +33,7 @@ export var startAddTodo = (text) => {
     var todoRef = firebaseRef.child('todos').push(todo);
 
     return todoRef.then(() => {
-      dispatch(addTodos({
+      dispatch(addTodo({
         ...todo,
         id: todoRef.key
       }));
@@ -45,6 +45,27 @@ export var addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
     todos
+  };
+};
+
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    var ref = firebaseRef.child('todos');
+    return ref.once('value').then((data) => {
+      var keys = Object.keys(data.val());
+      var todos = [];
+
+      keys.forEach((key) => {
+        var todo= {
+          id: key,
+          ...data.val()[key]
+        };
+
+        todos.push(todo);
+      });
+
+      dispatch(addTodos(todos));
+    });
   };
 };
 
