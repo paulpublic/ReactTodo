@@ -120,5 +120,23 @@ describe('Reducers', () => {
       expect(res.length).toEqual(1);
       expect(res[0]).toEqual(todos[0]);
     });
+
+    it('should clear todos from store on logout', () => {
+      var todos = [{
+        id: '111',
+        text: 'anything',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 33000
+      }];
+
+      const action = {
+        type: 'LOGOUT'
+      };
+
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toBe(0);
+    });
   });
 });
