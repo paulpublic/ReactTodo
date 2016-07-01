@@ -109,10 +109,10 @@ export var startLogout = () => {
   };
 };
 
-export var login = (userId) => {
+export var login = (uid) => {
   return {
     type: 'LOGIN',
-    uid: userId
+    uid
   };
 };
 
